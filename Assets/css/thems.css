@@ -3,10 +3,17 @@ input{font-family:"Microsoft Yahei";}
 /*头部*/
 .head_t{ width:100%; height:30px; line-height:30px; background:#555;}
 .head_t .head_tm{ width:1160px; height:30px; margin:0px auto; line-height:30px; text-align:left; color:#FFF;}
+.layui-nav-child{display: none;}
+#dengru{display: flex;flex-direction:row;justify-content:center;height: 30px;width: 250px;float: right;margin:0;padding:0;}
+#dengru li{margin:0 10px;height: 30px;line-height: 30px;display: inline;}
+#dengru a{height: 26px;line-height: 26px;display: flex;flex-direction:row;justify-content:center;}
+.head_add{ width:40%; height:30px; line-height:30px; float:right; text-align:right;}
+.head_t a{color: white;}
+.layui-nav-img{margin-right: 10px;}
 .head_tm .head_tr{ width:40%; height:30px; line-height:30px; float:right; text-align:right;}
 .head_tm .head_tr a{ display:inline-block; *display:inline; zoom:1; height:15px; line-height:15px; vertical-align:top; margin:0px 20px; color:#FFF; margin-top:7px;}
 .head_tm .head_tr a.code{ border-left:1px  solid #444; margin-left:0px; padding-left:20px;}
-.head_tm .head_tr a span{ width:16px; height:16px; background:url(../images/icon1.png) no-repeat center center;}
+.head_tm .head_tr a span{ width:35px; height:16px;border: 1px solid red;text-align: center;}
 .head_tm .head_tr a:hover{ text-decoration:underline;}
 .header{ width:1160px; height:83px; margin:0px auto; line-height:83px;}
 .header .logo{ width:185px; height:57px; float:left; margin-top:13px;}
