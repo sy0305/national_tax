@@ -159,11 +159,12 @@ input{font-family:"Microsoft Yahei";}
 .scd_rm .scd_rma p{ font-size:16px; width:50%; position:absolute; left:25px; top:0px; color:#5F5F5F;}
 /*开始*/
 .scd_rm .scd_rma .search{ width:750px; height:23px; border:1px solid #ddd; float:right; margin-top:2px; position:relative;}
-.scd_rm .scd_rma .search input{ width:160px; height:23px; padding:0px 5px; line-height:23px; position:absolute; left:560px; top:0px; border:0px; background:none;}
+.scd_rm .scd_rma .search input{ width:160px; height:23px; padding:0px 5px; line-height:23px; position:absolute; left:560px; top:0px; border:0px; background:none;
+    border: 1px solid lightgreen;}
 .scd_rm .scd_rma .search .search2{ width:350px; height:23px; padding:0px 5px; line-height:23px; position:absolute; left:0px; top:0px; border:0px; background:none;}
 .scd_rm .scd_rma .search .search3{ width:100px; height:23px; padding:0px 5px; line-height:23px; position:absolute; left:400px; top:0px; border:0px; background:none;}
 .scd_rm .scd_rma .search .sbtn{ width:38px; height:25px; position:absolute; left:720px; top:-1px; background-color:#00608A; background-image:url(../images/s_btn.png); background-position: center center; background-repeat:no-repeat; cursor:pointer;}
-.scd_rm .scd_rma .search .sbtn1{ width:38px; height:25px; position:absolute; left:350px; top:-1px; background-color:#00608A; background-image:url(../images/s_btn.png); background-position: center center; background-repeat:no-repeat; cursor:pointer;}
+.scd_rm .scd_rma .search .sbtn1{ width:38px; height:25px; position:absolute; left:220px; top:-1px; background-color:#F60C0C; background-image:url(../images/s_btn.png); background-position: center center; background-repeat:no-repeat; cursor:pointer;}
 .scd_rm .scd_rma .search .sbtn2{ width:38px; height:25px; position:absolute; left:80px; top:-1px; background-color:darkorange; background-image:url(../images/s_btn2.png); background-position: center center; background-repeat:no-repeat; cursor:pointer;}
 /*结束*/
 .scd_rm .scd_rmb{ width:100%; margin-top:20px;}
