@@ -1,0 +1,506 @@
+﻿/*网页的全局样式 解决兼容问题*/
+body,div,p,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,table,tr,td,form,input,select,textarea,span,img,a,em,strong,*{ margin:0; padding:0;}
+body{ font-family:"microsoft yahei"; font-size:12px; color:#000000;}
+ul,ol,li{ list-style:none;}
+h1,h2,h3,h4,h5,h6{ font-size:14px;}
+input,select,textarea{ vertical-align:middle;}
+img{ border:none; vertical-align:middle;}
+a{ text-decoration:none; color:#333333;}
+a:hover{ color:#009999;}
+.clear{ clear:both; height:0px; width:0px; overflow:hidden;}
+
+
+.top{
+    height: 83px;
+    width: 990px;
+    margin: 0 auto;
+}
+.logo{
+    float: left;
+    height: 35px;
+    width: 317px;
+    margin-top: 24px;
+}
+.top ul{
+    float: right;
+    margin-top: 16px;
+
+}
+.top ul li{
+    line-height: 24px;
+    font-size: 18px;
+}
+.top ul li span{
+    color: #a0a0a0;
+    font-size: 14px;
+}
+
+.login{
+    height: 536px;
+    background: #e2e2e2;
+}
+.login-box{
+  /*  width: 990px;*/
+    width: 1250px;
+    height: 536px;
+    margin: 0 auto;
+  /*  background: url("../images/bj2.png");*/
+
+}
+.login-word{
+    margin-left: 60px;
+    margin-top: 189px;
+    float: left;
+    display: inline-block;
+}
+.box{
+    height: 454px;
+    width: 374px;
+    margin-top: 40px;
+   margin-left: 172px;
+    display: inline-block;
+    float: left;
+    background: url("../images/dengru/form-bj.png");
+
+}
+.tabNav {
+    height: 449px;
+}
+.tabNav li h2{
+    float: left;
+    width: 184px;
+    line-height: 48px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    background: #f7f7f7;
+    color: #999;
+    font-size: 18px;
+}
+.two-h2{
+    +margin-top: -15px;
+}
+.high{
+    border-top: 2px solid #62a3f3 !important;
+    background: #fff !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    color: #000 !important;
+}
+.one,.two{
+    width: 369px;
+    height: 399px;
+    float: left;
+}
+.one form,.two form{
+
+}
+.one form p,.two form p{
+    width: 300px;
+    height: 39px;
+    border-radius: 5px;
+    border: 1px solid #e6e6e6;
+    margin-left: 34px;
+    margin-top: 20px;
+}
+
+.key{
+    padding-right: 16px;
+    padding-left: 105px;
+    padding-top: 22px;
+
+}
+.span{
+    padding-left: 15px;
+
+}
+
+
+.phone-input,.pad-input{
+    width: 182px;
+    margin-left: 35px;
+    border: none;
+    height: 38px;
+    +height: 36px;
+	+line-height: 42px;
+	line-height: 38px;
+	outline:none;
+	border:0;
+
+}
+.pad-input{
+    margin-left: 124px;
+   outline: none;
+    +margin-left: 80px;
+	border:0;
+}
+.yzm-input{
+    width: 80px !important;
+	+width: 73px;
+    height: 38px;
+	+height: 36px;
+    line-height: 38px;
+	+line-height: 38px;
+	border:0;outline:0;
+}
+.yzm-p{
+    width: 143px !important;
+	+width: 145px !important;
+    /*float: left;*/
+    /*+width: 193px !important;*/
+}
+.yz-span{
+    padding-top:  13px !important;
+   /* display: block;*/
+    margin-left: 15px;
+
+}
+.yzm-input{
+    margin-left: 8px;
+    width: 100px !important;
+    border: none;
+}
+
+#verifyPic{
+    +margin-left: 10px;
+}
+.btn{
+    width: 300px;
+    height: 46px;
+    border-radius: 5px;
+    border: none;
+    background: #ff6500;
+    margin-left: 34px;
+    margin-top: 40px;
+    color: #fff;
+    font-size: 20px;
+}
+.forget-pwsd{
+    text-decoration: none;
+    margin-top: 10px;
+    float: right;
+    margin-right: 35px;
+    display: inline-block;
+    color: #3366cc;
+	font-size: 16px;
+}
+
+/*4步骤*/
+.steps{
+    height: 325px;
+    background: #62a3f3;
+}
+.step-box{
+    width: 990px;
+    margin:0 auto;
+}
+.step-bj{
+    margin-left:67px ;
+    margin-top: 30px;
+}
+.main{
+    height: 1125px;
+    width: 990px;
+    margin: 0 auto;
+}
+.user{
+    height: 350px;
+   /* background: url("../images/user.jpg") no-repeat;*/
+    border-bottom: 1px solid #ccc;
+    margin: 50px auto;
+}
+.user-bj{
+   margin-left: 100px;
+}
+.cooperation{
+    height: 340px;
+   /* background: url("../images/cooperation.jpg") no-repeat;*/
+    border-bottom: 1px solid #ccc;
+    margin:60px auto;
+}
+.cooperation-bj{
+    margin-left: 150px;
+}
+.service{
+    height: 280px;
+    /* background: url("../images/cooperation.jpg") no-repeat;*/
+    margin:60px auto;
+}
+.service-bj{
+    margin-left: 182px;
+}
+/*扫一扫*/
+.sao-sao{
+    height: 325px;
+    width: 100%;
+    background: #eee;
+}
+.rongyiji{
+    width: 990px;
+    margin: 0 auto;
+}
+.rongyiji-bj{
+    margin-left: 178px;
+    margin-top: 57px;
+}
+.copyright{
+    height: 196px;
+    width: 990px;
+    margin: 0 auto;
+    margin-top:78px ;
+}
+.copyright ul{
+    width: 860px;
+    margin:0 auto;
+    padding-top: 40px;
+}
+.copyright ul li{
+    float: left;
+    padding-right: 10px;
+    display: block;
+
+}
+.copyright p{
+    width: 680px;
+    margin: 17px auto;
+    color: #6e6e6e;
+}
+
+/*找回页面*/
+.Repswd-wrap{
+    width: 990px;
+    margin: 0 auto;
+
+}
+.Repswd-logo{
+    padding-top: 28px;
+}
+.Repswd-top{
+    width: 458px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+.Repswd-div{
+    width: 990px;
+    height: 360px;
+    margin: 20px auto;
+    background: #fff;
+}
+.Repswd-form{
+    width: 540px;
+    height: 200px;
+    margin: 40px auto;
+
+}
+.Repswd-phone{
+    width: 290px;
+    height: 40px;
+    border: none;
+    background: url("../images/re-input.png");
+}
+.Repswd-form p{
+    padding-top: 20px;
+    margin-left: 24px;
+}
+.Repswd-div p label{
+    font-size: 16px;
+}
+.Rephone-yanz{
+    width: 128px;
+    height: 38px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 20px;
+    display: inline-block;
+}
+.next{
+    width: 130px;
+    height: 40px;
+    background: #e6472e;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    margin-left:83px;
+    margin-top: 20px;
+}
+/*密码重置页*/
+.span2{
+    margin-left: 105px;
+    color: #ccc;
+}
+.label2{
+    width: 82px;
+    text-align: right;
+    margin-right:13px ;
+    display: inline-block;
+}
+
+/*设置成功*/
+.Repswdok{
+    width: 350px;
+    margin: 40px auto;
+    font-size: 18px;
+    height: 0;
+}
+.denglu{
+    display: inline-block;
+    width: 130px;
+    height: 40px;
+    background: #e6472e;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 40px;
+    text-align: center;
+    margin-left: 430px;
+
+}
+.oul{
+margin-top: -43px;
+    margin-bottom: 14px;
+    margin-left: 107px;
+}
+.yan-oul{
+    margin-top: -24px;
+    margin-bottom: 14px;
+    margin-left: 103px;
+
+}
+.oli{
+    width: 80px;
+    height: 14px;
+    margin-right: 3px;
+    float: left;
+    background:#ccc;
+    text-align: center;
+    color: #fff;
+    line-height: 14px;
+}
+
+
+
+
+#myModalLabel{
+    padding-top: 2px;
+    padding-left: 22px;color: #000 !important;
+    font-size: 24px;
+    display: block;
+}
+.close span{
+
+    padding-top: 10px;
+    display: inline-block;
+}
+
+.mtai-yzm{
+    height: 38px;
+    width:148px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+.mtai-a{
+    width: 150px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    background: #e6472e;
+    color: #fff;
+    display: block;
+    border-radius: 5px;
+    margin-left: 50px;
+    margin-top: 52px;
+    font-size: 18px;
+
+}
+#btn{
+    width: 130px;
+    height: 40px;
+    background: #e6472e;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    margin-left: 58px;
+}
+
+
+/*注册页面*/
+
+#main {
+    margin: 0 auto;
+    width:988px;
+
+    background:#FFF;
+    padding-bottom:20px;
+    height: 400px;
+}
+#reg-div {
+    margin:50px 0 0 120px;
+
+}
+#reg-div div {
+    height:50px;
+    width:640px;
+    margin: 0 auto;
+}
+#reg-div div.item-input {
+    display:inline;
+}
+#reg-div h3 {
+    margin-bottom:30px;
+}
+.item-name{
+    width:100px;
+    text-align:right;
+    padding:12px 5px 0 0;
+    clear:both;
+}
+.input-info {
+    border:1px solid #BFD1DF;
+    height:34px;
+    line-height:30px;
+    width:275px;
+    padding-left:10px;
+}
+
+.input-dft {
+    border:1px solid #BFD1DF;
+}
+
+.input-focus {
+    border:1px solid #5487AF;
+}
+.zc-next,.zc2-next{
+    width: 285px;
+    height: 46px;
+    background: #e6472e;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    margin-top: 50px;
+    margin-left: 205px;
+}
+.tiao{
+   text-align: center;
+}
+.Repswd-ul{
+    width: 800px;
+}
+.Repswd-ul li{
+    float: left;
+    width: 172px;
+}
+.Repswd-ul li span{
+    float: right;
+}
+#footer {
+    width: 990px;
+    margin:90px auto;
+    text-align: center;
+    line-height: 180%;
+    font-size:14px;
+}

@@ -1,0 +1,621 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>万融金服登录</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=7" />-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+
+    <meta name="description" content="融360为各种贷款机构提供强大的金融直销平台，融360大批量的用户推广，精准的用户筛选，轻松获取高质量贷款用户，从此营销不再困难。" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta property="wb:webmaster" content="24361565f3f10113" />
+    <link rel="stylesheet" href="Assets/css/style.css"/>
+    <script type="text/javascript" src="Assets/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        String.prototype.Trim = function()
+        {
+            //去掉字符串首尾空格
+            return this.replace(/(^\s*)|(\s*$)/g , "");
+        };
+        String.prototype.TrimAllSpace = function()
+        {
+            //去掉字符串所有空格
+            return this.replace(/\s+/g,"");
+        };
+        var i=90;
+        var intervalid;
+        var clickok=true;
+
+        if($('#pc_zhuCeJiShiTime').val()){
+            i=$('#pc_zhuCeJiShiTime').val();
+        }
+        function timerRun()
+        {
+            if(i<=0)
+            {
+                $('#btn_get_mobile_captcha')[0].disabled=false;
+                $('#btn_get_mobile_captcha').html('点此获取验证码');
+                clearInterval(intervalid);
+                i=90;
+                clickok=true;
+            }
+            else
+            {
+                $('#btn_get_mobile_captcha')[0].disabled=true;
+                $('#btn_get_mobile_captcha').html(i+'秒后可重新获取');
+                i--;
+            }
+        }
+        $(document).ready(function(){
+            $('#zcpswd').blur(function(){
+                checkPassword();
+            });
+            if($('#pc_zhuCeJiShiTime').val()){
+                clickok=false;
+                $('#btn_get_mobile_captcha')[0].disabled=true;
+                i=$('#pc_zhuCeJiShiTime').val();
+                intervalid=setInterval(timerRun,1000);
+            }
+            $('#btn_get_mobile_captcha').click(function(){
+                if(clickok==false){
+                    return;
+                }
+                if(checkMobile()){
+                    //showSucc('mobile_error');
+                    clickok=false;
+                    $('#btn_get_mobile_captcha')[0].disabled=true;
+                    intervalid=setInterval(timerRun,1000);
+
+                    var mobile=$('[name="zcmoblie"]').val();
+                    var mobile_verifyPic=$('#validateCode').val();
+                    mobile=mobile.Trim();
+                    $.ajax({
+                        type: 'GET',
+                        url: "/bd/collaborate/setDaoJiShi",
+                        timeout: 10000,
+                        dataType: 'json',
+                        success: function(data){
+                            //alert(data.msg);
+                        },
+                        error: function(xmlRequest,type,e){
+                            alert('error');
+                        }
+                    });
+
+                    $.get("/bd/collaborate/getCaptcha?mobile="+mobile+"&verify="+mobile_verifyPic,function(result){
+                        // $('#mobile_captcha_error').removeClass('check_error').removeClass('check_succ').addClass('check_info').show();
+                        $('.error_msg').html(result);
+                        if(result=='验证码不正确'){
+                            i=0;
+                            if('https:' == document.location.protocol){
+                                $('#verifyPic').attr('src','https://www.rong360.com/vcode/create?type=bd_reg&t='+Date.now());
+                            }
+                            else{
+                                $('#verifyPic').attr('src','http://www.rong360.com/vcode/create?type=bd_reg&t='+Date.now());
+                            }
+                        }
+                    });
+                }
+            });
+            /*$('#querenpswd').blur(function(){
+                checkConfirmPswd();
+            });*/
+        });
+        function track_check_success(text){
+            var ext = encodeURIComponent('&success='+encodeURIComponent(text));
+            var img = document.createElement('img');
+            img.src = get_ra() + '&ext=' + ext;
+        }
+        function checkPassword()
+        {
+            var pwd=$('#zcpswd').val();
+            pwd=pwd.Trim();
+            $('#zcpswd').val(pwd);
+        }
+
+        function checkMobile()
+        {
+            var mobile=$('[name="zcmoblie"]').val();
+            mobile=mobile.Trim();
+            $('#mobile').val(mobile);
+            if(mobile==''){
+                $('.error_msg').html("手机号码不能为空");
+                //showErr('mobile_error');
+                return false;
+            }
+            else if(! /^1[3|4|5|6|7|8|9]\d{9}$/.test(mobile) )
+            {
+                $('.error_msg').html("手机号码格式错误");
+                //showErr('mobile_error');
+                return false;
+            }
+            else{
+                //showSucc('mobile_error');
+                $('.error_msg').html("");
+                return true;
+            }
+        }
+
+        $(function(){
+            $(document).delegate("#PostSubmit2", "click", function(){
+
+                var zcmoblie = $('[name="zcmoblie"]').val(),
+                    zcpswd = $('[name="zcpswd"]').val(),
+                    mobile_captcha = $('[name="mobile_captcha"]').val();
+                zcmobile =  zcmoblie.TrimAllSpace();
+                var zcphoneKey = /^1[3|4|5|7|8|9]\d{9}$/.test(zcmobile);
+                zcpswd = zcpswd.Trim();
+
+                if(zcmoblie == ""){
+                    $('.error_msg').html("请填写你的手机号码");
+                }else if(!zcphoneKey){
+                    $('.error_msg').html("请正确填写你的手机号码");
+                }else if(zcpswd == ""){
+                    $('.error_msg').html("请填写你的密码");
+                }else if(zcpswd.length<6 || zcpswd.length>20){
+                    $('.error_msg').html("密码长度要求6~20位字符");
+                }else if(isNaN(mobile_captcha)){
+                    $('.error_msg').html("输入验证码中包含特殊字符或字母");
+                }
+                else{
+                    track_check_success("注册页认证成功");
+                    $.ajax({
+                        type: 'POST',
+                        url: '/bd/collaborate/ajaxValidateVerifyCode.html',
+                        data: {
+                            "mobile": zcmobile,
+                            "password": zcpswd,
+                            "mobile_captcha": mobile_captcha
+                        },
+                        dataType: 'json',
+                        timeout: 5000,
+                        success:function(data){
+                            if(data.success == 1){
+                                track_check_success("注册跳转到完善个人信息");
+                                window.location.href = "/bd/collaborate/guide.html";
+                            }else{
+                                $('.error_msg').html(data.msg);
+                            }
+                        }
+                    });
+                }
+            });
+
+            //电话告诉我验证码
+            $(document).delegate(".call-vcode", "click", function(){
+                var mobile=$('[name="zcmoblie"]').val();
+                $('.error_msg').html('正在发送，请稍后...');
+                $.ajax({
+                    type: 'POST',
+                    url: '/bd/collaborate/getVoiceCaptcha',
+                    data: {
+                        mobile: mobile
+                    },
+                    timeout: 10000,
+                    success: function(data){
+                        $('.error_msg').html(data);
+                    },
+                    error: function(xmlRequest,type,e){
+                        $('.error_msg').html('获取电话验证码出现错误，请尝试重新获取短信验证码。');
+                    }
+                });
+            });
+        });
+
+
+    </script>
+    <style>
+        .verify input{
+            float: left;
+        }
+        .verify img{
+            float: right;
+            margin-right: 18px;
+            margin-top:10px
+        }
+        label {
+            color: #CCCCCC;
+            padding: 5px;
+            *padding-top:5px !important;
+            *padding-top:10px;
+            position: absolute;
+            cursor:text;
+        }
+        .block-msg-box{
+            position: absolute;
+            top:0;
+            left:5px;
+            width:330px;
+            height:244px;
+            background: #fdfdfd;
+        }
+        .block-msg-box div{
+            margin:0 auto;
+            text-align:center;
+            width:300px;
+        }
+        .block-msg-box div h1{
+            color: red;
+            font-size: 22px;
+            padding: 30px 0;
+        }
+        .block-msg-box div p{
+            font-size: 18px;
+            padding: 10px 0;
+        }
+        #header .tel {
+            float: left;
+            margin-top: 34px;
+            height: 35px;
+            font-size: 20px;
+            color: #333333;
+        }
+        .call-vcode{
+            color:blue;
+        }
+        .one form p, .two form p{
+            margin-top: 10px;
+        }
+        .agreement-box{
+            color: #aaa;
+            line-height: 1rem;
+            padding: 0 10px;
+        }
+        .agreement-box a {
+            color: #3366cc;
+        }
+        .agreement-box [type="checkbox"]{
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div class="top">
+    <img src="Assets/images/dengru/18020993de7f431079486d74ac055832.png" alt="" class="logo"/></br>
+    <ul>
+        <li><span>信贷经理专线：</span>4008-901-360</li>
+    </ul>
+</div>
+<div class="login">
+    <div class="login-box">
+        <img src="Assets/images/dengru/bj2.png" alt="" style="float: left"/>
+        <div class="box" >
+            <ul class="tabNav clearfix">
+                <li>
+                    <h2 class="one-h2" style="margin-left: 2px">快速注册</h2>
+                </li>
+                <li>
+                    <h2 class="two-h2">已有账户</h2>
+                </li>
+                <div class="one">
+                    <img src="Assets/images/dengru/zuce-key.png" alt="" class="key"/>
+                    <form id="f1" method="post" action="/bd/collaborate/apply.html">
+                        <input type="hidden" name="RONG360_CSRF_TOKEN" value="90370f0cc02edba7083fb71c43751405f8983851" />
+                        <input type="hidden" name="platform" value="pc" />
+                        <input type="hidden" name="pc_zhuCeJiShiTime" id="pc_zhuCeJiShiTime" value="0"/>
+                        <p>
+                                   <span class="span" style="display:block;margin-top:12px">
+                                       <img src="Assets/images/dengru/phone-ico.png" alt="" class="phone-ico"/>&nbsp;&nbsp;&nbsp;手机号
+                                   </span>
+                            <input type="text" name="zcmoblie" class="phone-input" placeholder="请用本人实名手机号码注册" style="width:185px;+width:175px;margin-top:-40px;+margin-top:-33px;margin-left: 113px;+margin-left: 85px;"/>
+                            <input type="hidden" name="step" value="0"/>
+                        </p>
+                        <p>
+                                   <span class="span" style="display:block;margin-top:12px">
+                                       <img src="Assets/images/dengru/psd-ico.png" alt="" class="phone-ico"/>&nbsp;&nbsp;&nbsp;密码
+                                   </span>
+                            <input type="password" name="zcpswd" id="zcpswd" class="pad-input" placeholder="密码(6~20位数字及字母组成)" style="width:185px;+width:175px;margin-top:-40px;+margin-top:-33px;margin-left: 113px;+margin-left: 85px;"></input>
+                        </p>
+                        <p class="yzm-p">
+                                   <span class="yz-span">
+                                       <img src="Assets/images/dengru/yzm-ico.png" alt="" class="yzm-ico"/>
+                                   </span>
+                            <input class="yzm-input" maxlength="4" id="validateCode"  type="text" name="verifyCode" value="" autocomplete="off"/>
+                        </p>
+                        <img id="verifyPic" name="verifyPic1" width="95" height="38" src="" style="float: left;margin-left: 204px; margin-top: -37px; +margin-top: -44px"/>
+                        <p class="yzm-p">
+						            <span class="yz-span">
+						            	<img src="Assets/images/dengru/yzm-ico.png" alt="" class="yzm-ico"/>
+						            </span>
+                            <input class="yzm-input" maxlength="6" id="mobile_captcha" type="text" name="mobile_captcha" value="" autocomplete="off">
+                        </p>
+                        <button id="btn_get_mobile_captcha" type="button" class="btn btn-orange" style="float: left;margin-left: 204px;margin-top: -38px; +margin-top: -39px;width: 126px; font-size: 14px; height: 38px; font-weight: bold;position:relative;+margin-left:200px;">点此获取验证码</button>
+                        <div class="error_msg" style="margin-top: 5px;margin-left: 35px;margin-right: 30px;line-height: 20px;color: #F60C0C;font-size: 13px">
+                        </div>
+                        <input type="button" class="btn" style="margin-top: 5px;" id="PostSubmit2" name="submit" value="快速注册"/>
+
+                    </form>
+                </div>
+                <div class="two">
+                    <img src="Assets/images/dengru/key.png" alt="" class="key"/>
+                    <form id="f2" method="post" action="/bd/login.html" onsubmit="return check_login_form();">
+                        <input type="hidden" name="RONG360_CSRF_TOKEN" value="90370f0cc02edba7083fb71c43751405f8983851" />
+                        <p>
+                                   <span class="span">
+                                       <img src="Assets/images/dengru/phone-ico.png" alt="" class="phone-ico"/>&nbsp;&nbsp;&nbsp;手机号
+                                   </span>
+                            <input id="login_phone" type="text" name="LoginForm[mobile]" class="phone-input" placeholder="手机号码" style="width:186px;+width:182px;"/>
+                        </p>
+                        <p>
+                                   <span class="span" style="display:block;margin-top:12px">
+                                       <img src="Assets/images/dengru/psd-ico.png" alt="" class="phone-ico"/>&nbsp;&nbsp;&nbsp;密码
+                                   </span>
+                            <input id="login_pwd" type="password" name="LoginForm[password]" class="pad-input" placeholder="密码" style="width:186px;+width:181px;margin-top:-40px;+margin-top:-35px;margin-left:113px;+margin-left:80px;border:0;outline:0;"/>
+                        </p>
+                        <p class="yzm-p">
+                                   <span class="yz-span">
+                                       <img src="Assets/images/dengru/yzm-ico.png" alt="" class="yzm-ico"/>
+                                   </span>
+                            <input placeholder="图片验证码" class="yzm-input" maxlength="4" value='' id="login_validateCode"  type="text" name="LoginForm[verifyCode]" value="" autocomplete="off"/>
+                            <img id="login_verifyPic" name="verifyPic2" width="95" height="38" src="Assets/images/dengru/feaa0fd362704c83af6ed91a3e1ffe7e.gif" style="float: left;margin-left: 170px; margin-top: -37px; +margin-top: -38px"/>
+                        </p>
+                        <!--
+                        <p class="yzm-p">
+                           <span class="yz-span">
+                               <img src="picture/psd-ico.png" alt="" class="phone-ico"/>
+                           </span>
+                            <input placeholder="短信验证码" class="yzm-input" maxlength="6" value='' id="smsCode"  type="text" name="LoginForm[smsCode]" value="" autocomplete="off"/>
+                        </p>
+                        <button id="btn_get_sms_code" type="button" class="btn btn-orange" style="float: left;margin-left: 204px;margin-top: -38px; +margin-top: -39px;width: 126px; font-size: 14px; height: 38px; font-weight: bold;position:relative;+margin-left:200px;">点此获取验证码</button>
+                        -->
+                        <div id="errmsg" style="height: 20px;padding-left: 40px;padding-top: 10px;color: #F60C0C;font-size: 15px;">
+                        </div>
+                        <button class="btn" type="submit" style="margin-top: 24px;">登 录</button>
+                        <br/>
+                        <a href="/bd/password/find.html" class="forget-pwsd">&gt;&gt;忘记密码</a>
+                    </form>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="steps">
+    <div class="step-box">
+        <img src="Assets/images/dengru/step-bj.png" alt="" class="step-bj"/>
+    </div>
+</div>
+<div class="main">
+    <div class="user">
+        <img src="Assets/images/dengru/user.jpg" alt="" class="user-bj"/>
+    </div>
+    <div class="cooperation">
+        <img src="Assets/images/dengru/cooperation.jpg" alt="" class="cooperation-bj"/>
+    </div>
+    <div class="service">
+        <img src="Assets/images/dengru/service.jpg" alt="" class="service-bj"/>
+    </div>
+</div>
+
+<div class="sao-sao">
+    <div class="rongyiji">
+        <img src="Assets/images/dengru/dd1f2e87e2b3e8782ee11b194f0ff746.png" alt="" class="rongyiji-bj"/>
+    </div>
+</div>
+
+
+<div class="clear"></div>
+<div id="footer" style="display:none">
+    <a href="http://www.rong360.com/about" target="_blank">关于融360</a> | <a href="https://bd.rong360.com/collaborate/apply.html" target="_blank">信贷经理入驻</a> | <a href="http://www.rong360.com/about/contact.html" target="_blank">联系我们</a> | <a href="http://www.rong360.com/about/disclaimer.html" target="_blank">免责声明</a> | <a href="http://www.rong360.com/about/feedback.html" target="_blank">建议与投诉</a><br />
+    Copyright &copy;2019 Rong360.com Inc. All Rights Reserved.<span style="padding-left:10px;"><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备12000680号-1</a></span><span style="padding-left:10px;">京公网安备110108008323号</span>
+</div>
+
+<script src="Assets/js/jquery.stripe.js"></script>
+<script src="Assets/js/jquery.resize.min.js"></script>
+<script type="text/javascript" src="Assets/js/improve_tips.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        improve_tips.show_tips();
+        $('.tb-list tbody tr').stripe();
+        if ('undefined' != typeof(config)  && config.unread_count && config.unread_count > 0)
+        {
+            $('#unread-count').html('(' + config.unread_count + ')').show();
+        }
+        $('#main').height($('#rightmain').height());
+        $('#footer').show();
+        $('#rightmain').resize(function(){
+            $('#main').height($('#rightmain').height());
+        });
+
+        $('img').each(function(){
+            var img = $(this);
+            var def = img.attr('def');
+            //console.log(def);
+            if (def && def.length > 0)
+            {
+                img.bind('error', function(){
+                    var src = '//static.rong360.com/img/' + def;
+                    img.attr('src', src);
+                    img.unbind('error');
+                });
+            }
+        });
+
+
+        /** online servie */
+        $("#floatShow").bind("mouseover",function(){
+            $("#onlineService").animate({
+                width:"180px", opacity:"show"
+            }, "normal" ,function(){
+            });
+
+            $("#floatShow").hide();
+            $("#floatHide").show();
+        });
+
+        $("#floatHide").bind("mouseout",function(){
+            $("#onlineService").animate({
+                width:"0", opacity:"hide"
+            }, "normal" ,function(){
+            });
+
+            $("#floatShow").show();
+            $("#floatHide").hide();
+        });
+
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('#floatShow').bind('mouseover', function(){
+            var img = document.createElement('img');
+            img.src = get_ra() + '&ext=' + encodeURIComponent('&action=woyaozixun');
+        });
+        var img = document.createElement('img');
+        img.src = get_ra();
+    });
+</script>
+<script src="Assets/js/ra.js"></script>
+<script>
+    function get_ra()
+    {
+        var ra_pid = "aaaab357522af58ff87edfd37f4b491a";
+        if ($('#ra_pid').length > 0)
+        {
+            ra_pid = $('#ra_pid').val();
+        }
+        var url = "%2Fbd%2Flogin.html";
+        var rf = encodeURIComponent(document.referrer);
+        var host = "https%3A%2F%2Fbd.rong360.com";
+        var banker_id = '';
+        var abclass = '1548646645_42'.split('_');
+        if(abclass.length > 1)
+        {
+            abclass = abclass[1];
+        }
+        else
+        {
+            abclass = abclass[0];
+        }
+
+        var ext_str = '';
+
+        var page_name = '';
+        page_name += '&page_name=bd_login';
+        return '//g.rong360.com/u.gif?rid=' + ra_gc('RONGID') + '&access_id=' + '58ktb4l37stsossm5qrt1f7sq2' + '&ca=site/login&tpl=/www/bd/view/login.tpl&url=' + url + '&rf=' + rf + '&host=' + host + '&city=&pid=' + ra_pid + '&uf=o_60a1f51a70ab97f766215de95715a8ea&abclass=' + abclass + '&ga_csr=&ga_ccn=&ga_cmd=&ga_ctr=&rtm=' + ra_gc('__rtm') + '&ext=' + encodeURIComponent(ext_str) + '&page_name=' + encodeURIComponent(page_name) + '&banker_id=' + banker_id + '&channel=bd';
+    }
+</script>
+
+<script type="text/javascript">
+    function login_timerRun()
+    {
+        if(i<=0)
+        {
+            $('#btn_get_sms_code')[0].disabled=false;
+            $('#btn_get_sms_code').html('点此获取验证码');
+            clearInterval(intervalid);
+            i=90;
+            clickok=true;
+        }
+        else
+        {
+            $('#btn_get_sms_code')[0].disabled=true;
+            $('#btn_get_sms_code').html(i+'秒后可重新获取');
+            i--;
+        }
+    }
+    jQuery(function(){
+        $(".two-h2").addClass("high");
+        $(".one").hide();
+        $(".one-h2").on("click",function(e){
+            var timestamp = new Date().getTime();
+            $('[name="verifyPic1"]').attr('src','https://www.rong360.com/vcode/create?type=bd_reg&t='+timestamp);
+            $(".one-h2").addClass("high");
+            $(".two-h2").removeClass("high");
+            $(".one").show();
+            $(".two").hide();
+        });
+        $(".two-h2").on("click",function(e){
+            var timestamp = new Date().getTime();
+            $('[name="verifyPic2"]').attr('src','https://www.rong360.com/vcode/create?type=bd_login&t='+timestamp);
+            $(".one-h2").removeClass("high");
+            $(".two-h2").addClass("high");
+            $(".one").hide();
+            $(".two").show();
+        });
+
+        $('#btn_get_sms_code').click(function(){
+            if(clickok==false){
+                return;
+            }
+            clickok=false;
+            $('#btn_get_sms_code')[0].disabled=true;
+            intervalid=setInterval(login_timerRun,1000);
+            var mobile=$('#login_phone').val();
+            var mobile_verifyPic=$('#login_validateCode').val();
+            mobile=mobile.Trim();
+            if(mobile ===''){
+                $('#errmsg').html('请输入手机号码');
+                i=0;
+                return false;
+            }
+            if(mobile_verifyPic ===''){
+                i=0;
+                $('#errmsg').html('请输入图片验证码');
+                return false;
+            }
+            $.ajax({
+                type: 'GET',
+                url: "/bd/collaborate/setDaoJiShi",
+                timeout: 10000,
+                dataType: 'json',
+                success: function(data){
+                    //alert(data.msg);
+                },
+                error: function(xmlRequest,type,e){
+                    alert('error');
+                }
+            });
+            $.get("/bd/collaborate/getCaptcha?type=login&mobile="+mobile+"&verify="+mobile_verifyPic,function(result){
+                // $('#mobile_captcha_error').removeClass('check_error').removeClass('check_succ').addClass('check_info').show();
+                $('#errmsg').html(result);
+                if(result==='验证码不正确'){
+                    i=0;
+                    if('https:' == document.location.protocol){
+                        $('#login_verifyPic').attr('src','https://www.rong360.com/vcode/create?type=bd_login&t='+Date.now());
+                    }
+                    else{
+                        $('#login_verifyPic').attr('src','http://www.rong360.com/vcode/create?type=bd_login&t='+Date.now());
+                    }
+                }
+            });
+        });
+    });
+    function check_login_form(){
+        /*
+        var sign = $('#sign_rule_f2:checked');
+        if(sign.length===0){
+            alert('请阅读并接受《信贷员服务公约》和《信贷员合作行为规定》');
+            $('#errmsg').html('请阅读并接受《信贷员服务公约》和《信贷员合作行为规定》');
+            return false;
+        }
+        */
+        var un = $('#login_phone').val();
+        var pw = $('#login_pwd').val();
+        var vc = $('#login_validateCode').val();
+        //var sc = $('#smsCode').val();
+        if(un ===''){
+            $('#errmsg').html('请输入手机号码');
+            return false;
+        }
+        if( pw===''){
+            $('#errmsg').html('请输入密码');
+            return false;
+        }
+        if( vc===''){
+            $('#errmsg').html('请输入图片验证码');
+            return false;
+        }
+        /*
+        if( sc===''){
+            $('#errmsg').html('请输入短信验证码');
+            return false;
+        }
+    */
+        return true;
+    }
+</script>
+</body>
+</html>
