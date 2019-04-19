@@ -9,6 +9,8 @@
 <script type="text/javascript" src="Assets/js/js_z.js"></script>
 <!--幻灯片-->
 <link rel="stylesheet" type="text/css" href="Assets/css/thems.css">
+    <script type="text/javascript" src="Assets/js/jsAddress.js"></script>
+
 </head>
 
 <body>
@@ -47,7 +49,7 @@
 	<div class="sidenav">
     	<ul>
         	<li class="title"><span class="in_block">用户服务</span></li>
-            <li><a href="">工资管理</a></li>
+            <li><a href="taxuser.html">工资管理</a></li>
             <li><a href="">修改信息</a></li>
             <li><a href="">铜</a></li>
         </ul>
@@ -77,15 +79,29 @@
                 <form action="demo-form.php" autocomplete="on" id="form1" method="post" enctype="multipart/form-data"  >
                     姓名:<input type="text" name="fname">
                     </br> </br>
-                    证件类型: <input type="text" name="lname">
+                    证件类型:
+                    <select style="font-size: 8px">
+                        <option value ="volvo">居民身份证</option>
+                        <option value ="saab">士官证</option>
+                        <option value="opel">学生证</option>
+                        <option value="audi">驾驶证</option>
+                        <option value="audi">护照</option>
+                        <option value="audi">港澳通行证</option>
+                    </select>
                     </br> </br>
                     证件号码: <input type="email" name="email" autocomplete="off">
                     </br> </br>
-                    性别: <input type="email" name="email" autocomplete="off">
+                    性别:
+                    <label><input name="sex" type="radio" value="" />男性 </label>
+                    <label><input name="sex" type="radio" value="" />女性</label>
                     </br> </br>
-                    出生日期: <input type="text" name="lname">
+                    出生日期: <input type="date" name="lname">
                     </br> </br>
-                    国籍: <input type="text" name="lname">
+                    国籍:
+                    <select style="font-size: 8px">
+                        <option value ="volvo">中华人民共和国</option>
+                        <option value ="saab">国外</option>
+                    </select>
                     </br> </br>
                     <img id="img" src="${pageContext.request.contextPath}/pic/${pic}"
                          onerror="this.src='${pageContext.request.contextPath}/b1.jpg'">
@@ -93,22 +109,45 @@
                     </br> </br>
                     <div>户籍所在地</div>
                     </br><hr> </br>
-                    所在地区: <input type="text" name="lname">
+                    所在地区:
+                    省：<select id="Select4"></select>
+                    市：<select id="Select5"></select>
+                    区：<select id="Select6"></select>
+                    <script type="text/javascript">
+
+                        addressInit('Select4', 'Select5', 'Select6');
+                    </script>
                     </br> </br>
                     详细地址: <input type="text" name="lname">
                     </br> </br>
                     <div>经常居住地</div>
                     </br><hr> </br>
-                    所在地区: <input type="text" name="lname">
+                    所在地区:
+                    省：<select id="Select1"></select>
+                    市：<select id="Select2"></select>
+                    区：<select id="Select3"></select>
+                    <script type="text/javascript">
+
+                        addressInit('Select1', 'Select2', 'Select3');
+                    </script>
                     </br> </br>
                     详细地址: <input type="text" name="lname">
                     </br> </br>
 
                     <div>其他</div>
                     </br><hr> </br>
-                    学历: <input type="text" name="lname">
+                    学历:
+                    <select style="font-size: 8px">
+                        <option value ="volvo">研究生</option>
+                        <option value ="saab">大学本科</option>
+                        <option value="opel">大学本科以下</option>
+                    </select>
                     </br> </br>
-                    民族: <input type="text" name="lname">
+                    民族:
+                    <select style="font-size: 8px">
+                        <option value ="volvo">汉族</option>
+                        <option value ="saab">回族</option>
+                    </select>
                     </br> </br>
                     邮箱: <input type="text" name="lname">
                     </br> </br>
