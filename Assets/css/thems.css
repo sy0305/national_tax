@@ -156,6 +156,8 @@ input{font-family:"Microsoft Yahei";}
 .scd_r .scd_rh p a:hover{color:#005F89;}
 .scd_r .scd_rm{ width:861px; margin:5px 15px 15px;}
 .scd_rm .scd_rma{ width:100%; height:30px; line-height:30px; position:relative; background:url(../images/icon7.png) no-repeat left center;}
+.scd_rma1{ width:100%; height:30px; line-height:30px; position:relative; background:url(../images/icon7.png) no-repeat left center;}
+.scd_rma1 p{ font-size:16px; width:50%; position:absolute; left:25px; top:0px; color:#5F5F5F;}
 .scd_rm .scd_rma p{ font-size:16px; width:50%; position:absolute; left:25px; top:0px; color:#5F5F5F;}
 /*开始*/
 .scd_rm .scd_rma .search{ width:750px; height:23px; border:1px solid #ddd; float:right; margin-top:2px; position:relative;}
