@@ -1,0 +1,93 @@
+第一：页面布局
+
+登入 和注册跳转到 --登入注册页面
+
+
+如果登入成功--涉及后台验证查询数据库是否存在，返回主界面  含头像 鼠标放上有下拉菜单
+
+如果没有账号  需要注册 ，把信息，前台正则验证 ，后台验证后没有问题，存入数据库
+
+注册成功后返回登入页面，验证成功，返回主界面
+
+
+
+顶端黑色的 宽1160   高度30  设置头像完成
+
+
+
+工资条功能：根据xx模糊查询   通过年，月查询   添加用户工资信息，删除信息 ，修改信息，加分页功能
+
+
+新增按钮，如果新增  页面大框不变，显示表单添加
+修改按钮，页面大框不变，同上
+
+工资条添加，内容存是工资条的表，
+
+实现页面一键向上到首页功能
+
+
+首先新建一个JS  让denglu 和首页公用，如果表单提交成功，将登入 注册按钮隐藏，剩头像。
+头像下的下拉菜单，鼠标滑过显示
+
+
+设计数据库：
+用户基础信息：
+
+user 姓名  国籍  qq  证件类型  身份证（提交后中间不显示）   手机号码  部门  出生日期
+
+
+户籍所在地
+
+所在地区   详细地址
+
+
+经常居之地
+
+所在地区  详细地址
+
+其他  学历  民族   邮箱
+
+
+将页面导入JAVA中
+
+
+
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `user_name` varchar(11) DEFAULT NULL COMMENT '用户名称',
+  `user_phone` varchar(18) NOT NULL COMMENT '手机号',
+  `user_department` varchar(11) DEFAULT NULL COMMENT '用户所在部门',
+  `card_type` varchar(11) DEFAULT NULL COMMENT '证件类型',
+  `card_num` int(18) DEFAULT NULL COMMENT '证件号码',
+  `user_sex` varchar(11) DEFAULT NULL COMMENT '性别',
+  `user_birth` varchar(20) DEFAULT NULL COMMENT '用户出生年月日',
+  `nationality` varchar(11) DEFAULT NULL COMMENT '国籍',
+  `user_picture` varchar(50) DEFAULT NULL COMMENT '上传的头像路径',
+  `location_address` varchar(50) DEFAULT NULL COMMENT '户籍地址',
+  `location_detailed` varchar(50) DEFAULT NULL COMMENT '户籍详细地址',
+  `ofen_address` varchar(50) DEFAULT NULL COMMENT '常住地址',
+  `ofen_detailed` varchar(50) DEFAULT NULL COMMENT '详细地址',
+  `education` varchar(20) DEFAULT NULL COMMENT '学历',
+  `nation` varchar(20) DEFAULT NULL COMMENT '民族',
+  `user_email` varchar(20) DEFAULT NULL COMMENT '邮箱',
+  `QQ` varchar(20) DEFAULT NULL COMMENT 'QQ',
+  `weixin` varchar(20) DEFAULT NULL COMMENT '微信',
+  PRIMARY KEY (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `slip` (
+  `slip_id` int(11) NOT NULL AUTO_INCREMENT,
+  `key_id` int(11) NOT NULL COMMENT '外键关联user',
+  `slip_year` int(11) DEFAULT NULL COMMENT '选择年',
+  `slip_mouth` int(11) DEFAULT NULL COMMENT '选择月',
+  `base_pay` int(11) DEFAULT NULL COMMENT '基本工资',
+  `business_pay` int(11) DEFAULT NULL COMMENT '业务提成',
+  `welfare_pay` int(11) DEFAULT NULL COMMENT '五险一金合计',
+  `leave_pay` int(11) DEFAULT NULL COMMENT '事假金额',
+  `tax_pay` int(11) DEFAULT NULL,
+  `real_pay` int(11) DEFAULT NULL COMMENT '实发工资',
+  PRIMARY KEY (`slip_id`),
+  KEY `gzb` (`key_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
