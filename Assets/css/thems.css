@@ -13,7 +13,7 @@ input{font-family:"Microsoft Yahei";}
 .head_tm .head_tr{ width:40%; height:30px; line-height:30px; float:right; text-align:right;}
 .head_tm .head_tr a{ display:inline-block; *display:inline; zoom:1; height:15px; line-height:15px; vertical-align:top; margin:0px 20px; color:#FFF; margin-top:7px;}
 .head_tm .head_tr a.code{ border-left:1px  solid #444; margin-left:0px; padding-left:20px;}
-.head_tm .head_tr a span{ width:35px; height:16px;border: 1px solid red;text-align: center;}
+.head_tm .head_tr a span{ width:35px; height:16px;text-align: center;}
 .head_tm .head_tr a:hover{ text-decoration:underline;}
 .header{ width:1160px; height:83px; margin:0px auto; line-height:83px;}
 .header .logo{ width:185px; height:57px; float:left; margin-top:13px;}
@@ -166,9 +166,13 @@ input{font-family:"Microsoft Yahei";}
 .scd_rm .scd_rma .search .search2{ width:350px; height:23px; padding:0px 5px; line-height:23px; position:absolute; left:0px; top:0px; border:0px; background:none;}
 .scd_rm .scd_rma .search .search3{ width:100px; height:23px; padding:0px 5px; line-height:23px; position:absolute; left:400px; top:0px; border:0px; background:none;}
 .scd_rm .scd_rma .search .sbtn{ width:38px; height:25px; position:absolute; left:715px; top:-1px; background-color:#00608A; background-image:url(../images/s_btn.png); background-position: center center; background-repeat:no-repeat; cursor:pointer;}
-.scd_rm .scd_rma .search .sbtn1{ width:38px; height:25px; position:absolute; left:250px; top:-1px; background-color:#F60C0C; background-image:url(../images/s_btn.png); background-position: center center; background-repeat:no-repeat; cursor:pointer;}
-.scd_rm .scd_rma .search .sbtn2{ width:38px; height:25px; position:absolute; left:400px; top:-1px; background-color:darkorange; background-image:url(../images/s_btn2.png); background-position: center center; background-repeat:no-repeat; cursor:pointer;}
+.scd_rm .scd_rma .search .sbtn1{ width:38px; height:25px; position:absolute; left:200px; top:-1px; background-color:#F60C0C; background-image:url(../images/s_btn.png); background-position: center center; background-repeat:no-repeat; cursor:pointer;}
+.scd_rm .scd_rma .search .sbtn2{ width:38px; height:25px; position:absolute; left:350px; top:-1px; background-color:darkorange; background-image:url(../images/s_btn2.png); background-position: center center; background-repeat:no-repeat; cursor:pointer;}
 .scd_rm .scd_rma .search .sbtn3{ width:38px; height:25px; position:absolute; left:720px; top:-1px; background-color:darkorange; background-image:url(../images/fanhui.png); background-position: center center; background-repeat:no-repeat; cursor:pointer;}
+.scd_rm .scd_rma .search .biao{ width:100px; height:25px; position:absolute; left:280px; top:-1px;background-position: center center; cursor:pointer;}
+
+.scd_rm .scd_rma .search .year{height: 23px;position:absolute; left:40px; top:-1px; cursor:pointer;}
+.scd_rm .scd_rma .search .mouth{height: 23px;position:absolute; left:120px; top:-1px; cursor:pointer;}
 /*结束*/
 .scd_rm .scd_rmb{ width:100%; margin-top:20px;}
 .scd_rm .scd_rmb ul{ width:100%; min-height:200px;}

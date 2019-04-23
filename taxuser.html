@@ -59,11 +59,15 @@
         </div>
         <div class="scd_rm" >
             <!--模糊查询功能-->
-            <form action="" method="post" >
-        	<div class="scd_rma" style="border: 1px solid red">
+            <form action="" method="post" id="mainForm">
+                <input type="hidden" id="id" name="id"/>
+                <input type="hidden" id="message" value="${pageCode.msg}"/>
+                <input type="hidden" id="basePath" value="${basePath}"/>
+                <input type="hidden" name="page.currentPage" id="currentPage" value="1"/>
+        	<div class="scd_rma">
                 <!--功能按钮-->
             	<p>工资管理</p>
-                <div class="search" style="border: 1px solid red">
+                <div class="search">
 
                     	<input name="" type="text" placeholder="输入搜索信息">
                         <input name="" type="submit" class="sbtn" value="">
@@ -72,7 +76,7 @@
                     <!--根据年月 查询您的工资-->
                     <!--<form action="" method="post" class="search2">-->
                         查询：
-                        <select style="font-size: 8px">
+                        <select style="font-size: 8px" class="year">
                             <option value ="volvo">请输入年份</option>
                             <option value ="saab">Saab</option>
                             <option value="opel">Opel</option>
@@ -80,7 +84,7 @@
 
                         </select>
 
-                        <select style="font-size: 8px">
+                        <select style="font-size: 8px" class="mouth">
                             <option value ="volvo" >请输入月份</option>
                             <option value ="saab">1</option>
                             <option value="opel">2</option>
@@ -95,19 +99,19 @@
                             <option value ="saab">11</option>
                             <option value ="saab">12</option>
                         </select>
-                        <input name="" type="submit" class="sbtn1" value="">
+                        <input name="" type="button" class="sbtn1" value="" onclick="search('1');">
                     <!--</form>-->
                     <!--添加信息-->
                     <!--<form action="" method="post" class="search3" >-->
-                                 ：
-                        <input name="" type="submit" class="sbtn2" value="">新增信息
+                    <span class="biao">新增信息：</span>
+                        <input name="" type="submit" class="sbtn2" value="">
                     <!--</form>-->
 
 
         </div>
     </div>
 
-            <div class="scd_rmb" style="border: 1px solid red">
+            <div class="scd_rmb" style="">
             	<table class="zq" border="0" cellpadding="0" cellspacing="0">
                   <tr>
                       <th scope="col">序号</th>
